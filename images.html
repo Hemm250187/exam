@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+     img{
+         display:inline-block;
+         width:150px;
+         height:150px;
+     }
+    </style>
+</head>
+<body>
+    <script>
+     //完成十张图片的串行加载（图片依次加载）
+     //完成十张图片的并行加载 （一起加载）
+     //了解 event loop
+     var imgs = ["./images/6.jpg","./images/8.jpg","./images/10.jpg","./images/13.jpg","./images/14.jpg","./images/16.jpg","./images/125.jpg","./images/11182.jpg"];
+     //promise.all 方法
+    //  function loadImg(src){
+    //      return new Promise((res,rej)=>{
+    //          let img=document.createElement("img");
+    //          img.src=src;
+    //          img.onload=function(){
+    //              res(img);
+    //          }
+    //          img.onerror=function(err){
+    //              rej(err)
+    //          }
+    //      })
+    //  }
+    //  function showImg(imgs){
+    //      imgs.forEach(function(img){
+    //          document.body.appendChild(img)
+    //      })
+    //  }
+    //  let images = imgs.map(file=>loadImg(file))
+    //  Promise.all(images).then(showImg)
+
+        function make(imgs){
+            return new Promise((res,rej)=>{
+             let img=new Image();
+            
+             img.onload=function(){
+                 setTimeout(()=>{
+                     res(img)
+                 },1000)
+             }
+             rej.onerror=function(){
+                 rej()
+             }
+             img.src=imgs
+            })
+        }
+      //串行
+      async function crea(src){
+         for(var i=0;i<imgs.length;i++){
+             let image = await make(imgs[i]);
+             console.log(image)
+
+             document.body.appendChild(image)
+         } 
+       }
+       crea()
+       function loadImg(){
+          imgs.forEach(async(item,index)=>{
+            
+            let imgData = await make(item);
+           
+            document.body.appendChild(imgData);
+          })
+
+      }
+
+      loadImg();
+     // event loop 
+     // Event Loop即事件循环，是指浏览器或Node的一种解决javaScript单线程运行时不会阻塞的一种机制，也就是我们经常使用异步的原理。
+        console.log(1);
+        setTimeout(() => {
+        console.log(2);
+        Promise.resolve().then(() => {
+            console.log(3)
+        });
+        });
+        new Promise((resolve, reject) => {
+        console.log(4)
+        resolve(5)
+        }).then((data) => {
+        console.log(data);
+        
+        Promise.resolve().then(() => {
+            console.log(6)
+        }).then(() => {
+            console.log(7)
+            
+            setTimeout(() => {
+            console.log(8)
+            }, 0);
+        });
+        })
+        setTimeout(() => {
+        console.log(9);
+        })
+        console.log(10);
+
+    </script>
+</body>
+</html>
