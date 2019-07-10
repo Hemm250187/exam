@@ -3,6 +3,7 @@ import { Layout, Menu, Breadcrumb, Icon} from 'antd';
 import styles from "./css/examPage.css"
 import Checkquestion from "./questions/checkquestion"
 import Addquestion from "./questions/addquestions"
+import Details from "./questions/detail"
 import { Route } from "dva/router";
 const { Header, Content, Footer, Sider } = Layout;
 const { SubMenu } = Menu;
@@ -89,7 +90,7 @@ function examPage(props){
             <Layout>
                 <Route path="/exam/checkquestion" component={Checkquestion}></Route>
                 <Route path="/exam/addquestion" component={Addquestion}></Route>
-                
+                <Route path="/exam/details" component={Details}></Route>
             </Layout>
           </Layout>
         </div>

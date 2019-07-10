@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import {connect} from "dva";
 import "../css/examPage.css"
 import { Checkbox,Select,Button,Tag } from 'antd';
 const CheckboxGroup = Checkbox.Group;
@@ -6,13 +7,15 @@ const { Option } = Select;
 const plainOptions = ['javaScript上', 'javaScript下',"模块化开发","移动端开发","node基础","组件化开发(vue)","渐进式开发(react)","项目实战","javaScript高级","node高级"];
 const defaultCheckedList = [];
 
-export default class checkquestion extends Component {
+class checkquestion extends Component {
     state = {
         checkedList: defaultCheckedList,
         indeterminate: true,
         checkAll: false,
       };
-    
+    componentDidMount(){
+        console.log(this.props)
+    }
       onChange = checkedList => {
         this.setState({
           checkedList,
@@ -28,7 +31,12 @@ export default class checkquestion extends Component {
           checkAll: e.target.checked,
         });
       };
+      subjectdelog(){
+          let {history}=this.props;
+          history.push({pathname:"/exam/details"})
+      }
     render() {
+      
         return (
             <div className="seequest">
               <h2>查看试题</h2>
@@ -79,7 +87,7 @@ export default class checkquestion extends Component {
               </div>
               <div className="listquest">
                  <div className="subject">
-                   <div className="listsubject">
+                   <div className="listsubject" onClick={this.subjectdelog.bind(this)}>
                      <h4>机器人归位</h4>
                      <div className="labels">
                         <Tag color="gold">代码补全</Tag>
@@ -95,3 +103,4 @@ export default class checkquestion extends Component {
         )
     }
 }
+export default connect()(checkquestion)
