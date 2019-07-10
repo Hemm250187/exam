@@ -1,4 +1,5 @@
 import axios from "axios"
+//可复用
 const service = axios.create({
   baseURL:"http://169.254.12.169:7001/",
   timeout:5000
