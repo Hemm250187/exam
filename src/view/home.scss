@@ -1,0 +1,22 @@
+:global{
+    #components-layout-demo-side .logo {
+    height: 32px;
+    background: rgba(255, 255, 255, 0.2);
+    margin: 16px;
+  }
+  .wrapper{
+    width: 800px;
+    height: 800px;
+    display: flex;
+  }
+  .leftList{
+    width: 200px;
+    height: 100%;
+  }
+  .rightList{
+    width: 800px;
+    height: 800px;
+ 
+  }
+}
+
