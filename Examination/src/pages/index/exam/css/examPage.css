@@ -60,3 +60,18 @@
 :global .seequest .other .othertype {
   width: 20%;
 }
+
+:global .seequest .subject {
+  width: 100%;
+  display: flex;
+  cursor: pointer;
+}
+
+:global .seequest .subject .listsubject {
+  width: 90%;
+  line-height: 30px;
+}
+
+:global .seequest .subject .edit {
+  line-height: 100px;
+}

@@ -51,5 +51,17 @@
                 width: 20%;
             }
         }
+        .subject{
+            width:100%;
+            display:flex;
+            cursor: pointer;
+            .listsubject{
+                width:90%;
+                line-height: 30px;
+            }
+            .edit{
+                line-height: 100px;
+            }
+        }
     }
 }
