@@ -64,6 +64,7 @@
 :global .seequest .subject {
   width: 100%;
   display: flex;
+  border-bottom: 1px solid #ccc;
   cursor: pointer;
 }
 
