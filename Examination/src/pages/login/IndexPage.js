@@ -4,7 +4,7 @@ import { Form, Icon, Input, Button, Checkbox } from 'antd';
 import "./IndexPage.css"
 
 function LoginPage(props){
-    console.log(props);
+    //console.log(props);
     //模拟componentDidmount
     useEffect(()=>{
         // console.log("执行");
@@ -16,31 +16,22 @@ function LoginPage(props){
           if (!err) {
             props.login({user_name: values.username, user_pwd: values.password});
             console.log('Received values of form: ', values);
+            if(props.isLogin){
+                props.history.push({pathname:"/exam"})
+            }
           }
         });
     }
     const { getFieldDecorator } = props.form;
     return (
-    //      <div className="login">
-    //      <div className="loginbox">
-    //         <Input
-    //             placeholder="用户名"
-    //             prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
-    //             suffix={
-    //             <Tooltip title="Extra information">
-    //                 <Icon type="info-circle" style={{ color: 'rgba(0,0,0,.45)' }} />
-    //             </Tooltip>
-    //             }
-    //         />
-    //         <Input.Password placeholder="用户密码" />
-    //         <Button type="primary" block> 登录 </Button>
-    //     </div>  
-    // </div>
        <div className="login">
           <Form onSubmit={handleSubmit} className="login-form">
             <Form.Item>
               {getFieldDecorator('username', {
-                rules: [{ required: true, message: 'Please input your username!' }],
+                validateTrigger: 'onBlur',
+                rules: [
+                  { required: true, message: 'Please input your username!' },
+                  { min: 6, max: 15, message: 'Please input your correct username!' }],
               })(
                 <Input
                   prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
@@ -50,7 +41,9 @@ function LoginPage(props){
             </Form.Item>
             <Form.Item>
               {getFieldDecorator('password', {
-                rules: [{ required: true, message: 'Please input your Password!' }],
+                validateTrigger: 'onBlur',
+                rules: [{ required: true, message: 'Please input your Password!' },
+                { pattern: /^(?=.*?[a-z])(?=.*?[A-Z])(?=.*?\d)(?=.*?[!#@*&.]).*$/, message: 'Please input your correct password!' }],
               })(
                 <Input
                   prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
@@ -63,14 +56,10 @@ function LoginPage(props){
               {getFieldDecorator('remember', {
                 valuePropName: 'checked',
                 initialValue: true,
-              })(<Checkbox>Remember me</Checkbox>)}
-              <a className="login-form-forgot" href="">
-                Forgot password
-              </a>
+              })(<Checkbox>同意协议</Checkbox>)}
               <Button type="primary" htmlType="submit" className="login-form-button">
-                Log in
+               登录
               </Button>
-              Or <a href="">register now!</a>
             </Form.Item>
           </Form>
        </div> 
