@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import "../css/examPage.css"
-import { Checkbox,Select,Button } from 'antd';
+import { Checkbox,Select,Button,Tag } from 'antd';
 const CheckboxGroup = Checkbox.Group;
 const { Option } = Select;
 const plainOptions = ['javaScript上', 'javaScript下',"模块化开发","移动端开发","node基础","组件化开发(vue)","渐进式开发(react)","项目实战","javaScript高级","node高级"];
@@ -77,7 +77,20 @@ export default class checkquestion extends Component {
                     <Button type="primary" icon="search">查询</Button>
                 </div>
               </div>
-              <div className="listquest">所有</div>
+              <div className="listquest">
+                 <div className="subject">
+                   <div className="listsubject">
+                     <h4>机器人归位</h4>
+                     <div className="labels">
+                        <Tag color="gold">代码补全</Tag>
+                        <Tag color="lime">javaScript上</Tag>
+                        <Tag color="green">周考一</Tag>
+                     </div>
+                     <div className="usesubject">uyhjko发布</div>
+                   </div>
+                   <div className="edit">编辑</div>
+                 </div>
+              </div>
             </div>
         )
     }
