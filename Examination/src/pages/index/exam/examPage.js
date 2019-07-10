@@ -1,13 +1,23 @@
 import React from "react";
 import { Layout, Menu, Breadcrumb, Icon} from 'antd';
 import styles from "./css/examPage.css"
+import Checkquestion from "./questions/checkquestion"
+import Addquestion from "./questions/addquestions"
+import { Route } from "dva/router";
 const { Header, Content, Footer, Sider } = Layout;
 const { SubMenu } = Menu;
+const detail=(history,path)=>{
+    history.push(path)
+}
 function examPage(props){
-    console.log(props)
+    let {history}= props;
     return(
         <div className={styles.exam}>
-          <Layout style={{ minHeight: '100vh' }}>
+         <div className={styles.useheader}>
+           <span><img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1551624718911&di=4a7004f8d71bd8da84d4eadf1b59e689&imgtype=0&src=http%3A%2F%2Fimg105.job1001.com%2Fupload%2Falbum%2F2014-10-15%2F1413365052_95IE3msH.jpg"></img></span>
+           <span>用户</span>
+         </div>
+          <Layout style={{ minHeight: '90vh' }}>
           {/* 左侧导航 */}
             <Sider>
                 <div className="logo" />
@@ -21,9 +31,9 @@ function examPage(props){
                             </span>
                         }
                     >
-                        <Menu.Item key="1">添加试题</Menu.Item>
+                        <Menu.Item key="1" onClick={()=>{detail(history,"/exam/addquestion")}}>添加试题</Menu.Item>
                         <Menu.Item key="2">试题分类</Menu.Item>
-                        <Menu.Item key="3">查看试题</Menu.Item>
+                        <Menu.Item key="3" onClick={()=>{detail(history,"/exam/checkquestion")}}>查看试题</Menu.Item>
                     </SubMenu>
                     <SubMenu
                         key="sub2"
@@ -77,15 +87,9 @@ function examPage(props){
             </Sider>
             {/* 右侧详情 */}
             <Layout>
-                <Header style={{ background: '#fff', padding: 0 }} />
-                <Content style={{ margin: '0 16px' }}>
-                    <Breadcrumb style={{ margin: '16px 0' }}>
-                    <Breadcrumb.Item>User</Breadcrumb.Item>
-                    <Breadcrumb.Item>Bill</Breadcrumb.Item>
-                    </Breadcrumb>
-                    <div style={{ padding: 24, background: '#fff', minHeight: 360 }}>Bill is a cat.</div>
-                </Content>
-                <Footer style={{ textAlign: 'center' }}>Ant Design ©2018 Created by Ant UED</Footer>
+                <Route path="/exam/checkquestion" component={Checkquestion}></Route>
+                <Route path="/exam/addquestion" component={Addquestion}></Route>
+                
             </Layout>
           </Layout>
         </div>
