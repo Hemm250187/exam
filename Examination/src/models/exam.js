@@ -63,7 +63,6 @@ export default {
     },
     *questionsTypes({},{call,put}){
       let list = yield call(getQuestionsType);
-      console.log(list)
       yield put({
         type:"questionsType",
         payload:list.data

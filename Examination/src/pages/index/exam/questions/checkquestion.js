@@ -14,9 +14,9 @@ function checkquestion(props) {
        props.getQuestionsType()
     },[])
    
-    let subjectdelog=()=>{
+    let subjectdelog=(subject)=>{
         let {history}=props;
-        history.push({pathname:"/exam/details"})
+        history.push({pathname:"/exam/details",params:{exam:subject}})
     }
     return (
         <div className="seequest">
@@ -31,7 +31,7 @@ function checkquestion(props) {
                 </div>
                 <div className="other">
                     <div className="othertype">
-                    <span>考试类型</span>：
+                    <span>考试类型：</span>
                         <Select defaultValue="周考一" style={{ width: 120 }} >
                         {examtype&&examtype.map((item)=><Option value={item.exam_name} key={item.exam_id}>{item.exam_name}</Option>)}
                         </Select>
@@ -48,7 +48,7 @@ function checkquestion(props) {
             <div className="listquest">
                 {exam&&exam.map((item,index)=>
                     <div className="subject" key={index}>
-                        <div className="listsubject" onClick={()=>subjectdelog()}>
+                        <div className="listsubject" onClick={()=>subjectdelog(item)}>
                             <h4>{item.title}</h4>
                             <div className="labels">
                                 <Tag color="gold">{item.questions_type_text}</Tag>
