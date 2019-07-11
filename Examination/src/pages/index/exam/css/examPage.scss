@@ -19,7 +19,11 @@
     }
 }
 :global{
-    .seequest{
+    h2{
+        width:100%;
+        line-height: 80px;
+    }
+    .seequest,.detailexam{
         width:100%;
         flex:1;
         overflow-y: scroll;
@@ -27,10 +31,6 @@
         padding:0 20px;
         display:flex;
         flex-direction: column;
-        h2{
-            width:100%;
-            line-height: 80px;
-        }
         .navquest,.listquest{
             width:100%;
             box-sizing: border-box;
@@ -79,5 +79,24 @@
             }
         }
         
+    }
+    //详情页的布局
+    .detail{
+        width:100%;
+        flex:1;
+        display:flex;
+        justify-content: space-between;
+        .title{
+            background:#fff;
+            width:45%;
+            height:100%;
+            border-radius: 15px;
+            box-sizing: border-box;
+            padding:20px;
+        }
+        .detail_question{
+            width:53%;
+        }
+       
     }
 }
