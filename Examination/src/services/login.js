@@ -19,3 +19,7 @@ export function subject(){
 export function getQuestionsType(){
     return request.get("/exam/getQuestionsType")
 }
+//按条件获取试题
+export function condition(params){
+    return request.get("/exam/questions/condition",params)
+}

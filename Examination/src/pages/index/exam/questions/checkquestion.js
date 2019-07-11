@@ -7,13 +7,19 @@ const { Option } = Select;
 
 function checkquestion(props) {
     let {exam,examtype,subject,questions}=props;
+    console.log(subject)
     useEffect(()=>{
        props.getQuestion(),
        props.getExamType(),
        props.getsubject(),
-       props.getQuestionsType()
+       props.getQuestionsType(),
+       props.condition()
     },[])
-   
+    let findquestion=()=>{
+        props.form.validateFields((err, values) => {
+           console.log(values)
+          });
+    }
     let subjectdelog=(subject)=>{
         let {history}=props;
         history.push({pathname:"/exam/details",params:{exam:subject}})
@@ -42,7 +48,7 @@ function checkquestion(props) {
                         {questions&&questions.map(item=><Option value={item.questions_type_text} key={item.questions_type_id}>{item.questions_type_text}</Option>)}
                         </Select>
                     </div>
-                    <Button type="primary" icon="search">查询</Button>
+                    <Button type="primary" icon="search" onClick={()=>{findquestion()}}>查询</Button>
                 </div>
             </div>
             <div className="listquest">
@@ -94,6 +100,17 @@ const mapDispatchToProps = dispatch => {
           dispatch({
               type:"exam/questionsTypes"
           })
+      },
+      //按条件获取试题
+      condition:()=>{
+        return {
+            question:payload=>{
+                dispatch({
+                    type:"exam/term",
+                    payload
+                })
+            }
+        }
       }
     }
 }
