@@ -1,4 +1,4 @@
-import {login,exam} from '../services/index'
+import {login} from '../services/index'
 import {setToken,getToken} from "../utils/index"
 import {routerRedux} from "dva/router"
 export default {
@@ -49,23 +49,13 @@ export default {
         payload: data.code
       })
     },
-    *exam({payload},{call,put}){
-      let data= yield call(exam,payload);
-      console.log("exam...",data)
-      yield put({
-        type:"findexam",
-        payload:data
-      })
-    }
+   
   },
 
   // 同步操作
   reducers: {
     updateLogin(state, action) {
       return { ...state, isLogin: action.payload };
-    },
-    findexam(state,action){
-      return {...state,exam:action.payload}
     }
   },
 

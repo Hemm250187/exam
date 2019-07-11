@@ -1,11 +1,11 @@
 import React from "react";
-import { Layout, Menu, Breadcrumb, Icon} from 'antd';
+import { Layout, Menu, Icon} from 'antd';
 import styles from "./css/examPage.css"
 import Checkquestion from "./questions/checkquestion"
 import Addquestion from "./questions/addquestions"
 import Details from "./questions/detail"
 import { Route } from "dva/router";
-const { Header, Content, Footer, Sider } = Layout;
+const { Sider } = Layout;
 const { SubMenu } = Menu;
 const detail=(history,path)=>{
     history.push(path)
@@ -15,7 +15,7 @@ function examPage(props){
     return(
         <div className={styles.exam}>
          <div className={styles.useheader}>
-           <span><img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1551624718911&di=4a7004f8d71bd8da84d4eadf1b59e689&imgtype=0&src=http%3A%2F%2Fimg105.job1001.com%2Fupload%2Falbum%2F2014-10-15%2F1413365052_95IE3msH.jpg"></img></span>
+           <span><img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1551624718911&di=4a7004f8d71bd8da84d4eadf1b59e689&imgtype=0&src=http%3A%2F%2Fimg105.job1001.com%2Fupload%2Falbum%2F2014-10-15%2F1413365052_95IE3msH.jpg" alt=""></img></span>
            <span>用户</span>
          </div>
           <Layout style={{ minHeight: '90vh' }}>
@@ -87,11 +87,11 @@ function examPage(props){
                 </Menu>
             </Sider>
             {/* 右侧详情 */}
-            <Layout>
+            {/* <Layout> */}
                 <Route path="/exam/checkquestion" component={Checkquestion}></Route>
                 <Route path="/exam/addquestion" component={Addquestion}></Route>
                 <Route path="/exam/details" component={Details}></Route>
-            </Layout>
+            {/* </Layout> */}
           </Layout>
         </div>
     )
