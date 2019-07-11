@@ -12,12 +12,12 @@ function checkquestion(props) {
        props.getQuestion(),
        props.getExamType(),
        props.getsubject(),
-       props.getQuestionsType(),
-       props.condition()
+       props.getQuestionsType()
+    //    props.condition()
     },[])
     let findquestion=()=>{
         props.form.validateFields((err, values) => {
-           console.log(values)
+        //    console.log(values)
           });
     }
     let subjectdelog=(subject)=>{
