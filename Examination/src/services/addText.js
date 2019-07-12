@@ -13,5 +13,13 @@ export function getType(){
 //获取所有的试题
 export function getClassPage(){
     return request.get("/exam/questions/new")
-     
 }
+export function getsubject(){
+    return request.get("/exam/subject")   
+}
+export function Allquestion(){
+    return request.get("/exam/questions/new")   
+}
+
+
+

@@ -1,5 +1,4 @@
 import React, { useEffect, useState,Component } from 'react'
-import AddQuestions from './addQuestion'
 import {connect} from 'dva'
 import Editor from 'for-editor'
 import { Router, Route, Switch ,Redirect} from 'dva/router';
@@ -10,15 +9,20 @@ import axios from 'axios'
 const { Option} = Select;
 function AddQuestion(props) {
     console.log(props)
+
     useEffect(() => {
         props.getQuestionTypes()
-        props.getClassPage()
+        props.getsubject()
+        props.Allquestion()
       }, [])
+
   const {getFieldDecorator}=props.form;
+
  return (
        <Form className="login-form">
             <div className="addPage">
                 <h4>添加试题</h4>
+                
                 <div className="mains">
                 <div>
                     <p>题目信息</p>
@@ -66,6 +70,7 @@ function AddQuestion(props) {
                             initialValue: "请选择题目类型"
                         })(
                             <Select  style={{ width: 120 }}>
+                           {props.subjects.map(item=><Option key={item.subject_id} value={item.subject_text}>{item.subject_text}</Option>)}
                             </Select>
                         )}
                         </Form.Item>
@@ -73,12 +78,12 @@ function AddQuestion(props) {
        <div className="themList">     
               <p>请选择题目类型：</p>
               <Form.Item>
-                    {getFieldDecorator('subject_id', {
+                    {getFieldDecorator('questions_type_id', {
                         rules: [{ required: true, message: "题目类型必选" }],
-                        initialValue: "请选择题目类型"
+                        initialValue: "简答题"
                     })(
                         <Select  style={{ width: 120 }}>
-                        
+                           {props.insertList.map(item=><Option key={item.questions_type_id} value={item.questions_type_text}>{item.questions_type_text}</Option>)}
                         </Select>
                     )}
              </Form.Item>
@@ -104,6 +109,7 @@ function AddQuestion(props) {
 AddQuestion.propTypes={
 }
 const mapStateToProps=(state)=>{
+    console.log(state)
     return {
         ...state.power
     }
@@ -114,15 +120,19 @@ const mapDispatchToProps=(dispatch)=>{
             dispatch({
                 type:"power/type"
             })
-          
         },
-        getClassPage:()=>{
+        getsubject:()=>{
             dispatch({
-                type:"power/getClassPage"
+                type:"power/getsubject"
             })
         },
+        
+        Allquestion:()=>{
+            dispatch({
+                type:"power/Allquestion"
+            })
+        }
 
-           
     }
 }
 
