@@ -69,8 +69,9 @@ export default {
         payload:list.data
       })
     },
-    *term({},{call,put}){
-      let list = yield call(condition);
+    *term({payload},{call,put}){
+      console.log(payload)
+      let list = yield call(condition,payload);
       yield put({
         type:"condition",
         payload:list.data
@@ -94,7 +95,7 @@ export default {
     },
     //按条件获取试题
     condition(state,action){
-      return {...state,condition:action.payload}
+      return {...state,conditionterm:action.payload}
     }
   },
 

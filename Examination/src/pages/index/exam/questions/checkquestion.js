@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect,useState } from 'react'
 import {connect} from "dva";
 import "../css/examPage.css"
 import { Select,Button,Tag} from 'antd';
@@ -7,18 +7,48 @@ const { Option } = Select;
 
 function checkquestion(props) {
     let {exam,examtype,subject,questions}=props;
-    console.log(subject)
+   // console.log(subject)
     useEffect(()=>{
        props.getQuestion(),
        props.getExamType(),
        props.getsubject(),
        props.getQuestionsType()
-    //    props.condition()
+       props.condition()
     },[])
+        //考试类型：
+    const [seleValue, setSeleValue] = useState("");
+    //题目类型
+    const [seleTypeValue, setseleTypeValue] = useState("");
+    //课程类型
+    const [typeData, setTypeData] = useState("");
+    let seleFn = dls => {
+        console.log("考试类型"+dls)
+        setSeleValue(dls);
+        console.log(seleValue)
+    };
+    let typeFn = dls => {
+        console.log("题目类型"+dls)
+        setseleTypeValue(dls);
+    };            
+    let s = "";
+    let lisFn = e => {
+        s = e.target.getAttribute("datakey");
+        console.log(s)
+        setTypeData(s);
+    };
+  //点击按钮
     let findquestion=()=>{
-        props.form.validateFields((err, values) => {
-        //    console.log(values)
-          });
+        props.condition().title({
+            questions_type_id: seleTypeValue,
+            exam_id: seleValue,
+            subject_id: typeData
+        })
+        console.log(props.conditionterm)
+    //    props.title({
+    //     questions_type_id: seleTypeValue,
+    //     exam_id: seleValue,
+    //     subject_id: typeData
+    //    })
     }
     let subjectdelog=(subject)=>{
         let {history}=props;
@@ -31,21 +61,25 @@ function checkquestion(props) {
                 <div className="course">
                     <div className="coursetype">课程类型：</div>
                     <div className="listcourse">
-                        <span>All</span>
-                        {subject.map(item=><span key={item.subject_id}>{item.subject_text}</span>)}
+                        <span onClick={lisFn}>All</span>
+                        {subject.map(item=><span key={item.subject_id} datakey={item.subject_id} onClick={lisFn}>  {item.subject_text}</span>)}
                     </div>
                 </div>
                 <div className="other">
                     <div className="othertype">
                     <span>考试类型：</span>
-                        <Select defaultValue="周考一" style={{ width: 120 }} >
-                        {examtype&&examtype.map((item)=><Option value={item.exam_name} key={item.exam_id}>{item.exam_name}</Option>)}
+                        <Select defaultValue="周考一" 
+                       
+                        style={{ width: 120 }} >
+                        {examtype&&examtype.map((item)=><Option  onClick={()=>seleFn(item.exam_id)} value={item.exam_name} key={item.exam_id}>{item.exam_name}</Option>)}
                         </Select>
                     </div>
                     <div className="othertype">
                     <span>题目类型：</span>
-                        <Select defaultValue="简答题" style={{ width: 120 }} >
-                        {questions&&questions.map(item=><Option value={item.questions_type_text} key={item.questions_type_id}>{item.questions_type_text}</Option>)}
+                        <Select defaultValue="简答题" 
+                        
+                        style={{ width: 120 }} >
+                        {questions&&questions.map(item=><Option  onClick={()=>typeFn(item.questions_type_id)} value={item.questions_type_text} key={item.questions_type_id}>{item.questions_type_text}</Option>)}
                         </Select>
                     </div>
                     <Button type="primary" icon="search" onClick={()=>{findquestion()}}>查询</Button>
@@ -104,7 +138,7 @@ const mapDispatchToProps = dispatch => {
       //按条件获取试题
       condition:()=>{
         return {
-            question:payload=>{
+            title:payload=>{
                 dispatch({
                     type:"exam/term",
                     payload
