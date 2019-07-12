@@ -5,6 +5,7 @@ import Checkquestion from "./questions/checkquestion"
 import Addquestion from "./questions/addquestions"
 import Details from "./questions/detail"
 import { Route } from "dva/router";
+import Classfiy from "./questions/classfiy";
 const { Sider } = Layout;
 const { SubMenu } = Menu;
 const detail=(history,path)=>{
@@ -33,7 +34,7 @@ function examPage(props){
                         }
                     >
                         <Menu.Item key="1" onClick={()=>{detail(history,"/exam/addquestion")}}>添加试题</Menu.Item>
-                        <Menu.Item key="2">试题分类</Menu.Item>
+                        <Menu.Item key="2" onClick={()=>{detail(history,"/exam/classfiy")}}>试题分类</Menu.Item>
                         <Menu.Item key="3" onClick={()=>{detail(history,"/exam/checkquestion")}}>查看试题</Menu.Item>
                     </SubMenu>
                     <SubMenu
@@ -91,6 +92,7 @@ function examPage(props){
                 <Route path="/exam/checkquestion" component={Checkquestion}></Route>
                 <Route path="/exam/addquestion" component={Addquestion}></Route>
                 <Route path="/exam/details" component={Details}></Route>
+                <Route path="/exam/classfiy" component={Classfiy}></Route>
             {/* </Layout> */}
           </Layout>
         </div>
