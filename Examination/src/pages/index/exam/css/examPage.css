@@ -36,7 +36,7 @@
   flex-direction: column;
 }
 
-:global .seequest .navquest, :global .seequest .listquest, :global .detailexam .navquest, :global .detailexam .listquest, :global .edit_exam .navquest, :global .edit_exam .listquest {
+:global .seequest .navquest, :global .seequest .listquest, :global .seequest .edit_main, :global .detailexam .navquest, :global .detailexam .listquest, :global .detailexam .edit_main, :global .edit_exam .navquest, :global .edit_exam .listquest, :global .edit_exam .edit_main {
   width: 100%;
   box-sizing: border-box;
   padding: 20px;
