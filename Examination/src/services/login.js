@@ -21,5 +21,5 @@ export function getQuestionsType(){
 }
 //按条件获取试题
 export function condition(params){
-    return request.get("/exam/questions/condition",params)
+    return request.get(`/exam/questions/condition?questions_type_id=${params.questions_type_id}&&exam_id=${params.exam_id}&&subject_id=${params.subject_id}`)
 }

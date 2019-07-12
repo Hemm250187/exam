@@ -72,6 +72,7 @@ export default {
     *term({payload},{call,put}){
       console.log(payload)
       let list = yield call(condition,payload);
+      console.log(list)
       yield put({
         type:"condition",
         payload:list.data
