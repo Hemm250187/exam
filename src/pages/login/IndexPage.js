@@ -5,7 +5,6 @@ import styles from './IndexPage.scss';
 
 function LoginPage(props) {
   console.log('props...', props);
-
   // 模拟componentDidMount
   // useEffect(()=>{
   //   console.log('执行useEffect');
@@ -33,7 +32,7 @@ function LoginPage(props) {
         props.login({user_name: values.username, user_pwd: values.password});
         console.log('Received values of form: ', values);
       }
-    });
+    })
   }
   // 从Form高阶组件中拿到校验组件
   const { getFieldDecorator } = props.form;
