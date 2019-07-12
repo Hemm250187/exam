@@ -49,7 +49,10 @@ function checkquestion(props) {
         let {history}=props;
         history.push({pathname:"/exam/details",params:{exam:subject}})
     }
-
+    let editQuestion=(exam)=>{
+       let {history}=props;
+       history.push({pathname:"/exam/editexam",params:{exam}})
+    }
     return (
         <div className="seequest">
             <h2>查看试题</h2>
@@ -78,6 +81,7 @@ function checkquestion(props) {
                 </div>
             </div>
             <div className="listquest">
+                {conditionterm.length===0?"全部查询结果":""}
                 {exam&&exam.map((item,index)=>
                     <div className="subject" key={index}>
                         <div className="listsubject" onClick={()=>subjectdelog(item)}>
@@ -89,7 +93,7 @@ function checkquestion(props) {
                             </div>
                             <div className="usesubject">{item.user_name}发布</div>
                         </div>
-                        <div className="edit">编辑</div>
+                        <div className="edit" onClick={()=>editQuestion(item)}>编辑</div>
                     </div>
                 )}
             </div>

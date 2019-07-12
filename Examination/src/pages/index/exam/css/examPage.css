@@ -26,7 +26,7 @@
   line-height: 80px;
 }
 
-:global .seequest, :global .detailexam {
+:global .seequest, :global .detailexam, :global .edit_exam {
   width: 100%;
   flex: 1;
   overflow-y: scroll;
@@ -36,7 +36,7 @@
   flex-direction: column;
 }
 
-:global .seequest .navquest, :global .seequest .listquest, :global .detailexam .navquest, :global .detailexam .listquest {
+:global .seequest .navquest, :global .seequest .listquest, :global .detailexam .navquest, :global .detailexam .listquest, :global .edit_exam .navquest, :global .edit_exam .listquest {
   width: 100%;
   box-sizing: border-box;
   padding: 20px;
@@ -45,49 +45,49 @@
   margin-bottom: 20px;
 }
 
-:global .seequest .course, :global .detailexam .course {
+:global .seequest .course, :global .detailexam .course, :global .edit_exam .course {
   width: 100%;
   display: flex;
   justify-content: space-between;
 }
 
-:global .seequest .course .coursetype, :global .detailexam .course .coursetype {
+:global .seequest .course .coursetype, :global .detailexam .course .coursetype, :global .edit_exam .course .coursetype {
   width: 100px;
 }
 
-:global .seequest .other, :global .detailexam .other {
+:global .seequest .other, :global .detailexam .other, :global .edit_exam .other {
   width: 100%;
   margin: 20px 0;
   display: flex;
 }
 
-:global .seequest .other .othertype, :global .detailexam .other .othertype {
+:global .seequest .other .othertype, :global .detailexam .other .othertype, :global .edit_exam .other .othertype {
   width: 20%;
 }
 
-:global .seequest .listcourse > span, :global .detailexam .listcourse > span {
+:global .seequest .listcourse > span, :global .detailexam .listcourse > span, :global .edit_exam .listcourse > span {
   display: inline-block;
   padding: 0 10px 5px 10px;
   cursor: pointer;
 }
 
-:global .seequest .listcourse > span:hover, :global .detailexam .listcourse > span:hover {
+:global .seequest .listcourse > span:hover, :global .detailexam .listcourse > span:hover, :global .edit_exam .listcourse > span:hover {
   color: blue;
 }
 
-:global .seequest .listquest .subject, :global .detailexam .listquest .subject {
+:global .seequest .listquest .subject, :global .detailexam .listquest .subject, :global .edit_exam .listquest .subject {
   width: 100%;
   display: flex;
   border-bottom: 1px solid #ccc;
   cursor: pointer;
 }
 
-:global .seequest .listquest .subject .listsubject, :global .detailexam .listquest .subject .listsubject {
+:global .seequest .listquest .subject .listsubject, :global .detailexam .listquest .subject .listsubject, :global .edit_exam .listquest .subject .listsubject {
   width: 90%;
   line-height: 30px;
 }
 
-:global .seequest .listquest .subject .edit, :global .detailexam .listquest .subject .edit {
+:global .seequest .listquest .subject .edit, :global .detailexam .listquest .subject .edit, :global .edit_exam .listquest .subject .edit {
   line-height: 100px;
 }
 

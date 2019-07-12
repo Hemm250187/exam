@@ -1,9 +1,9 @@
-import React, {useEffect} from 'react'
+import React from 'react'
 import "../css/examPage.css"
-import { Select,Button,Tag} from 'antd';
+import {Tag} from 'antd';
 function detail(props){
     let question = props.location.params.exam;
-    console.log(question) 
+   // console.log(question) 
     return (
         <div className="detailexam">
             <h2>试题详情</h2>
