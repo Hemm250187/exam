@@ -1,0 +1,28 @@
+:global{
+    .classPage{
+        width: 100%;
+        height: 400px;
+    }
+    .ulTitle{
+        width: 100%;
+        height: 45px;
+        display: flex;
+        justify-content: space-around;
+    }
+    li{
+        list-style: none;
+    }
+    .btn{
+    margin: 20px;
+    background: lightskyblue;
+    }
+    
+    .ulList{
+        width: 100%;
+        height: 45px;
+        display: flex;
+        justify-content: space-around;
+        text-align: center;
+
+    }
+}
