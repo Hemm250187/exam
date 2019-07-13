@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from 'react'
 import {connect} from 'dva'
 import Editor from 'for-editor'
-//import { Router, Route, Switch ,Redirect} from 'dva/router';
 import "../css/addQuestion.css"
 import { Input ,Form, Button,Select,Modal} from 'antd';
 
 const { Option} = Select;
 function AddQuestion(props) {
-    let {examtype,subject,questions}=props;
-    console.log(props.location.params.exam)
-    let editexam = props.location.params.exam;
+    let {examtype,subject,questions,exam}=props;
+    let ids = props.match.params.id;
+    let editexam= exam.filter((file)=>file.questions_id===ids)[0] ||[];
     useEffect(() => {
+        props.getQuestion()
         props.getQuestionTypes()
         props.getsubject()
         props.getExamType()
@@ -39,12 +39,6 @@ function AddQuestion(props) {
             <p>题目主题</p>
             <Form.Item>
              <Editor height='auto' value={editexam.questions_stem}/>
-                {/* {getFieldDecorator('value', {
-                rules: [{ required: true, message: "答案信息必填" }],
-                initialValue: '',
-                })(
-                <Editor height='auto' value={editexam.questions_stem}/>
-                )} */}
             </Form.Item>
 
             <div className="themList">
@@ -67,16 +61,6 @@ function AddQuestion(props) {
             </div>
             <p>答案信息</p>
             <Editor height='auto' value={editexam.questions_answer}/>
-                {/* <Form.Item>
-                    
-                {getFieldDecorator('valueowen', {
-                rules: [{ required: true, message: "答案信息必填" }],
-                initialValue: '',
-                })(
-                <Editor height='auto' value={editexam.questions_answer}/>
-                )}
-                
-                </Form.Item> */}
             <Button type="primary" htmlType="submit" >提交</Button>
         </div> 
     </Form>
@@ -90,6 +74,12 @@ const mapStateToProps=(state)=>{
 }
 const mapDispatchToProps=(dispatch)=>{
     return {
+        //获取所有的试题
+        getQuestion: () => {
+            dispatch({
+                type:"exam/exam",
+            })
+        },
         //获取所有的试题类型
         getQuestionTypes:()=>{
             dispatch({

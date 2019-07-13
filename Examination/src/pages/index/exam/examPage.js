@@ -91,8 +91,8 @@ function examPage(props){
             {/* <Layout> */}
                 <Route path="/exam/checkquestion" component={Checkquestion}></Route>
                 <Route path="/exam/addquestion" component={Addquestion}></Route>
-                <Route path="/exam/details" component={Details}></Route>
-                <Route path="/exam/editexam" component={Editquestion}></Route>
+                <Route path="/exam/details/:id" component={Details}></Route>
+                <Route path="/exam/editexam/:id" component={Editquestion}></Route>
             {/* </Layout> */}
           </Layout>
         </div>

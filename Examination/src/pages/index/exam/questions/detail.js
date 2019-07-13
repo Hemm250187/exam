@@ -1,9 +1,14 @@
-import React from 'react'
+import React, { useEffect} from 'react'
+import {connect} from "dva";
 import "../css/examPage.css"
 import {Tag} from 'antd';
 function detail(props){
-    let question = props.location.params.exam;
-   // console.log(question) 
+    let ids = props.match.params.id;
+    let {exam} =props;
+    useEffect(()=>{
+        props.getQuestion()
+     },[])
+    let question= exam.filter((file)=>file.questions_id===ids)[0] ||[];
     return (
         <div className="detailexam">
             <h2>试题详情</h2>
@@ -27,4 +32,19 @@ function detail(props){
         </div>
     )
 }
-export default detail
+const mapStateToProps = (state) => {
+    return {
+        ...state.exam 
+    }
+ }
+const mapDispatchToProps = dispatch => {
+    return {
+      //获取所有的试题
+       getQuestion: () => {
+           dispatch({
+               type:"exam/exam",
+           })
+        }
+    }
+}
+export default connect(mapStateToProps,mapDispatchToProps)(detail)
