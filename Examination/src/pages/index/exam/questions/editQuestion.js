@@ -9,6 +9,7 @@ function AddQuestion(props) {
     let {examtype,subject,questions,exam}=props;
     let ids = props.match.params.id;
     let editexam= exam.filter((file)=>file.questions_id===ids)[0] ||[];
+   // console.log(editexam.exam_name)
     useEffect(() => {
         props.getQuestion()
         props.getQuestionTypes()
@@ -16,9 +17,23 @@ function AddQuestion(props) {
         props.getExamType()
       }, [])
 
-   const {getFieldDecorator}=props.form;
+    //const {getFieldDecorator}=props.form;
+    let visible=false;
+    const showModal = () => {
+          visible=true
+    };
+    const handleOk = e => {
+        console.log(e);
+        visible= false
+    };
+    
+    const handleCancel = e => {
+      console.log(e);
+        visible= false
+    };
 
    return (
+       
     <Form className="edit_exam">
         <h2>编辑试题</h2>
         <div className="edit_main">
@@ -61,7 +76,17 @@ function AddQuestion(props) {
             </div>
             <p>答案信息</p>
             <Editor height='auto' value={editexam.questions_answer}/>
-            <Button type="primary" htmlType="submit" >提交</Button>
+            <Button type="primary" htmlType="submit" onClick={()=>showModal()}>提交</Button>
+            <Modal
+                title="Basic Modal"
+                visible={visible}
+                onOk={()=>handleOk()}
+                onCancel={()=>handleCancel()}
+                >
+                <p>Some contents...</p>
+                <p>Some contents...</p>
+                <p>Some contents...</p>
+            </Modal>
         </div> 
     </Form>
         )
